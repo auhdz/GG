@@ -1,0 +1,11 @@
+.provenance-tag {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--color-muted);
+  background: var(--color-surface-pill);
+  border: 1px solid var(--color-border);
+  padding: 3px 10px;
+  border-radius: var(--radius-tag);
+  font-weight: 500;
+}

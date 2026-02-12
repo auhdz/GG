@@ -1,0 +1,33 @@
+{   
+    "meta": {
+        "product": "GiGi",
+        "version": "mvp",
+        "owner": "product"
+    },
+    "states": {
+        "start": {
+            "type": "start",
+            "next": "connect_sources"
+        },
+        "connect_sources": {
+            "type": "system",
+            "next": "permissions_check"
+        },
+        "permissions_check": {
+            "type": "decision",
+            "yes": "home",
+            "no": "fix_permissions"
+        },
+
+            "fix_permissions": {
+            "type": "system",
+            "next": "connect_sources"
+        },
+        "home": {
+            "type": "hub",
+            "actions": ["query"]
+        },
+        "query": {
+            "type": "action",
+            "next": "results"
+        },

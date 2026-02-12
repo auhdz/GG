@@ -1,0 +1,57 @@
+meta:
+  product: GG
+  version: mvp
+  owner: product
+
+states:
+  start:
+    type: start
+    next: connect_sources
+
+  connect_sources:
+    type: system
+    next: permissions_check
+
+  permissions_check:
+    type: decision
+    yes: home
+    no: fix_permissions
+
+  fix_permissions:
+    type: system
+    next: connect_sources
+
+  home:
+    type: hub
+    actions:
+      - query
+
+  query:
+    type: action
+    next: results
+
+  results:
+    type: list
+    branches:
+      no_path: empty_state
+      has_path: inspect_trust
+
+  inspect_trust:
+    type: optional
+    next: request_intro
+
+  request_intro:
+    type: action
+    next: intro_preview
+
+  intro_preview:
+    type: decision
+    yes: sent
+    no: results
+
+  sent:
+    type: terminal
+
+  empty_state:
+    type: terminal
+
