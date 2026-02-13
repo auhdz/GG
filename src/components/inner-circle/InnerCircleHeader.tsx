@@ -1,5 +1,3 @@
-// src/components/inner-circle/InnerCircleHeader.tsx
-
 import React from 'react';
 
 export default function InnerCircleHeader() {

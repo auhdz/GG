@@ -1,53 +1,21 @@
 import { useState } from 'react';
 import InnerCircleHeader from './InnerCircleHeader';
-import BeliefSignalCard from './BeliefSignalCard';
-import EmptyState from './EmptyState';
+import SignalCard from './SignalCard';
+import type { SignalState } from './SignalCard';
+import { signals } from './mockData';
 
-type Signal = {
-  type: string;
-  label: string;
-  description: string;
-};
+type SignalStates = Record<string, SignalState>;
 
-const signals: Signal[] = [
-  {
-    type: 'hiring',
-    label: 'Hiring',
-    description: 'Quietly open to the right people.',
-  },
-  {
-    type: 'fundraising',
-    label: 'Fundraising',
-    description: 'Exploring conversations without broadcasting.',
-  },
-  {
-    type: 'learning',
-    label: 'Learning',
-    description: 'Open to advice or warm connections.',
-  },
-  {
-    type: 'exploring',
-    label: 'Exploring',
-    description: 'No urgency. Just signal awareness.',
-  },
-];
+const initialStates: SignalStates = Object.fromEntries(
+  signals.map((s) => [s.type, { stage: 'draft' as const, note: '', urgency: 'Low' as const }])
+);
 
 export default function InnerCirclePage() {
-  const [activeSignals, setActiveSignals] = useState<Set<string>>(new Set());
+  const [signalStates, setSignalStates] = useState<SignalStates>(initialStates);
 
-  function toggleSignal(type: string) {
-    setActiveSignals((prev) => {
-      const next = new Set(prev);
-      if (next.has(type)) {
-        next.delete(type);
-      } else {
-        next.add(type);
-      }
-      return next;
-    });
+  function updateSignal(type: string, next: SignalState) {
+    setSignalStates((prev) => ({ ...prev, [type]: next }));
   }
-
-  const hasActive = activeSignals.size > 0;
 
   return (
     <div className="ic-page">
@@ -55,18 +23,17 @@ export default function InnerCirclePage() {
 
       <section className="ic-signal-list">
         {signals.map((s) => (
-          <BeliefSignalCard
+          <SignalCard
             key={s.type}
             type={s.type}
             label={s.label}
             description={s.description}
-            active={activeSignals.has(s.type)}
-            onToggle={() => toggleSignal(s.type)}
+            placeholder={s.placeholder}
+            state={signalStates[s.type]}
+            onChange={(next) => updateSignal(s.type, next)}
           />
         ))}
       </section>
-
-      {!hasActive && <EmptyState />}
     </div>
   );
 }
