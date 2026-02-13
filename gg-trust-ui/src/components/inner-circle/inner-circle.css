@@ -1,0 +1,290 @@
+/* === Inner Circle === */
+
+.ic-page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+/* === Header === */
+
+.ic-header {
+  margin-bottom: 48px;
+}
+
+.ic-header h1 {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  margin: 0 0 6px;
+}
+
+.ic-header p {
+  font-size: 13px;
+  color: var(--color-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* === Signal List === */
+
+.ic-signal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* === Belief Signal Card === */
+
+.ic-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: 20px;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.ic-card:hover {
+  border-color: var(--color-border-hover);
+}
+
+.ic-card--active {
+  border-color: rgba(124, 92, 252, 0.3);
+  background: var(--color-accent-dim);
+}
+
+.ic-card--active:hover {
+  border-color: rgba(124, 92, 252, 0.4);
+}
+
+.ic-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.ic-card-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text);
+  margin: 0 0 3px;
+  letter-spacing: -0.01em;
+}
+
+.ic-card-desc {
+  font-size: 12px;
+  color: var(--color-muted);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* === Actions === */
+
+.ic-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ic-btn {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  font-family: inherit;
+}
+
+.ic-btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Activate (dormant) */
+.ic-btn--activate {
+  background: var(--color-surface-subtle);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+}
+
+.ic-btn--activate:hover {
+  background: var(--color-border-hover);
+  color: var(--color-text);
+  border-color: var(--color-border-hover);
+}
+
+/* Active state */
+.ic-btn--active {
+  background: var(--color-accent-dim);
+  color: #b4a0ff;
+  border: 1px solid rgba(124, 92, 252, 0.25);
+}
+
+.ic-btn--active:hover {
+  background: rgba(124, 92, 252, 0.08);
+  color: var(--color-text-secondary);
+}
+
+/* Deactivate (appears on hover of active button) */
+.ic-btn--deactivate {
+  background: rgba(239, 68, 68, 0.1);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+/* Ghost button */
+.ic-btn--ghost {
+  background: none;
+  color: var(--color-muted);
+  padding: 6px 10px;
+  border: none;
+}
+
+.ic-btn--ghost:hover {
+  color: var(--color-text-secondary);
+}
+
+/* === Visibility Badge === */
+
+.ic-visibility {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: var(--color-muted);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  padding: 3px 10px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.ic-visibility-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-muted);
+  flex-shrink: 0;
+}
+
+.ic-visibility--active .ic-visibility-dot {
+  background: var(--color-accent);
+  box-shadow: 0 0 6px rgba(124, 92, 252, 0.4);
+}
+
+.ic-visibility--active {
+  color: var(--color-text-secondary);
+  border-color: rgba(124, 92, 252, 0.15);
+}
+
+/* === Signal Feedback === */
+
+.ic-feedback {
+  margin-top: 14px;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-inner);
+  animation: ic-feedback-in 0.35s ease both;
+}
+
+@keyframes ic-feedback-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ic-feedback-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.ic-feedback-line + .ic-feedback-line {
+  margin-top: 4px;
+}
+
+.ic-feedback-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+
+.ic-feedback-note {
+  font-size: 11px;
+  color: var(--color-muted);
+  margin: 8px 0 0;
+}
+
+/* === Empty State === */
+
+.ic-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--color-muted);
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+
+.ic-empty-line {
+  margin: 0;
+}
+
+/* === Confirm overlay (inline) === */
+
+.ic-confirm {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  animation: ic-feedback-in 0.2s ease both;
+}
+
+.ic-confirm-text {
+  font-size: 11.5px;
+  color: var(--color-text-secondary);
+}
+
+.ic-confirm .ic-btn {
+  font-size: 11px;
+  padding: 4px 12px;
+}
+
+.ic-btn--confirm {
+  background: var(--color-accent-dim);
+  color: #b4a0ff;
+  border: 1px solid rgba(124, 92, 252, 0.3);
+}
+
+.ic-btn--confirm:hover {
+  background: rgba(124, 92, 252, 0.25);
+}
+
+.ic-btn--cancel {
+  background: none;
+  color: var(--color-muted);
+  border: none;
+}
+
+.ic-btn--cancel:hover {
+  color: var(--color-text-secondary);
+}
